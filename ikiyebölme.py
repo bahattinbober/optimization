@@ -4,17 +4,22 @@ Created on Wed Apr  9 13:33:35 2025
 
 @author: pc
 """
-#ikiye bölme algoritması
+
+# İkiye bölme algoritması
 import numpy as np
 
-# Fonksiyon ve türevi
+# Fonksiyon
 def f(x):
-    return (x - 1)**2 * (x - 2) * (x - 3)
+    return (x1 - 2*x2 + x3+1)**2 + (x1 + x2 -x3 +3)**2 + (-2*x1 +x2 -x3)**2
 
+# Fonksiyonun türevi
 def df(x):
-    return 3 * x**2 - 12 * x + 11  # f'(x)
+    # Türev hesaplama
+    term1 = 2 * (x - 1) * ((x - 2) * (x - 3))  # İlk terim
+    term2 = (x - 1)**2 * (2 * x - 5)           # İkinci terim
+    return term1 + term2  # Toplam türev
 
-# İkiye-bölme algoritması
+# İkiye bölme algoritması
 def ikiye_bolme_algoritmasi(f_turev, xa, xb, tol=1e-4, max_iter=100):
     # Adım 1: Başlangıç kontrolü
     if f_turev(xa) * f_turev(xb) >= 0:
@@ -37,7 +42,9 @@ def ikiye_bolme_algoritmasi(f_turev, xa, xb, tol=1e-4, max_iter=100):
     return xk  # Maksimum iterasyonla bulunan yaklaşık çözüm
 
 # Kullanım
-xa = 1.0
-xb = 2.5
+# Yeni başlangıç aralığı seçimi
+xa = 0.5
+xb = 3.0
+
 minimum_nokta = ikiye_bolme_algoritmasi(df, xa, xb)
 print(f"Yaklaşık ekstremum noktası: x = {minimum_nokta:.6f}, f(x) = {f(minimum_nokta):.6f}")
